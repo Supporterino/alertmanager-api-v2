@@ -22,10 +22,8 @@ export class Alertmanager {
 
   public async getSilences(): Promise<Silence[]> {
     if (!this._httpClient) this._httpClient = this.createHTTPClientInstance();
-    const rawSilences = JSON.parse(
-      await this._httpClient.get(this._paths.get('silences')!)
-    ) as APIGettableSilence[];
-    return silencesFromAPIArray(rawSilences);
+    const response = await this._httpClient.get(this._paths.get('silences')!);
+    return silencesFromAPIArray(response.data as APIGettableSilence[]);
   }
 
   public async getActiveSilences(): Promise<Silence[]> {
