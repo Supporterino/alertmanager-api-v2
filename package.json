@@ -1,7 +1,7 @@
 {
   "name": "alertmanager-api-v2",
   "version": "0.0.0-development",
-  "description": "A template for creating npm packages using TypeScript and VSCode",
+  "description": "A npm packge which wraps the alertmanager v2 API in classes and interfaces. It also provides some utility functions",
   "main": "./lib/src/index.js",
   "files": [
     "lib/**/*"
