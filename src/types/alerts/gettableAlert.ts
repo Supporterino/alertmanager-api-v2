@@ -1,6 +1,11 @@
-interface APIGettableAlert extends APIAlert {
+import { APIAlert } from './alert';
+import { APIAlertStatus } from './alertStatus';
+import { APILabelSet } from './labelSet';
+import { Receiver } from './receiver';
+
+export interface APIGettableAlert extends APIAlert {
   annotations: APILabelSet;
-  receivers: Array<APIReceiver>;
+  receivers: Array<Receiver>;
   fingerprint: string;
   startsAt: string;
   updatedAt: string;

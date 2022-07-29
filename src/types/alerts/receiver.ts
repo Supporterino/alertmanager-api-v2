@@ -1,3 +1,3 @@
-interface APIReceiver {
+export interface Receiver {
   name: string;
 }

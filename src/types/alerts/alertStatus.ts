@@ -1,4 +1,4 @@
-interface APIAlertStatus {
+export interface APIAlertStatus {
   state: APIAlertStateString;
   silencedBy: Array<string>;
   inhibitedBy: Array<string>;

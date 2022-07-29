@@ -1,8 +1,11 @@
 import axios, { AxiosInstance } from 'axios';
 import { Silence, silencesFromAPIArray } from '../silences/silence';
+import { Receiver } from '../types/alerts/receiver';
 import { APIGettableSilence } from '../types/silences/gettableSilence';
+import { APIAlertmanagerStatus } from '../types/status/alertmanagerStatus';
 import { isURL } from '../utils/urlValidator';
 import { BasicAuth, AlertmanagerOptions } from './alertmanagerOptions';
+import { AlertmanagerStatus } from './alertmanagerStatus';
 
 export class Alertmanager {
   private _url: string;
@@ -17,6 +20,23 @@ export class Alertmanager {
       this._basicAuth = options.auth;
     }
     this._paths = getPathsMap();
+  }
+
+  public async getStatus(): Promise<AlertmanagerStatus> {
+    if (!this._httpClient) this._httpClient = this.createHTTPClientInstance();
+    const response = (await this._httpClient.get(this._paths.get('status')!)).data as APIAlertmanagerStatus;
+    return {
+      uptime: new Date(response.uptime),
+      config: response.config,
+      cluster: response.cluster,
+      versionInfo: response.versionInfo,
+    } as AlertmanagerStatus;
+  }
+
+  public async getReceivers(): Promise<Array<Receiver>> {
+    if (!this._httpClient) this._httpClient = this.createHTTPClientInstance();
+    const response = (await this._httpClient.get(this._paths.get('receivers')!)).data as Array<Receiver>;
+    return response;
   }
 
   public async getSilences(): Promise<Silence[]> {
@@ -46,5 +66,7 @@ export class Alertmanager {
 const getPathsMap = (): Map<string, string> => {
   const map = new Map<string, string>();
   map.set('silences', '/api/v2/silences');
+  map.set('status', '/api/v2/status');
+  map.set('receivers', '/api/v2/receivers');
   return map;
 };
