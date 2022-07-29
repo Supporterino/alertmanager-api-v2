@@ -1,1 +1,3 @@
-export const myPackage = (taco = ''): string => `${taco} from my package`;
+import { Alertmanager } from './alertmanager/alertmanager';
+
+module.exports = Alertmanager;
