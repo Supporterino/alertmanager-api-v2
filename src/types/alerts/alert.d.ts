@@ -1,6 +1,4 @@
-import { LabelSet } from './labelSet';
-
-export interface Alert {
-  labels: LabelSet;
+interface APIAlert {
+  labels: APILabelSet;
   generatorURL?: string;
 }

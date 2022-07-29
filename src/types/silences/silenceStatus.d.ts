@@ -1,5 +1,5 @@
-export interface SilenceStatus {
+interface APISilenceStatus {
   state: SilenceStateString;
 }
 
-export type SilenceStateString = 'expired' | 'active' | 'pending';
+type SilenceStateString = 'expired' | 'active' | 'pending';

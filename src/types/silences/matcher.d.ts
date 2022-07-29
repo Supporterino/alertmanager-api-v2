@@ -1,4 +1,4 @@
-export interface Matcher {
+interface APIMatcher {
   name: string;
   value: string;
   isRegex: boolean;

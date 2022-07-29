@@ -1,4 +1,4 @@
-export interface VersionInfo {
+interface APIVersionInfo {
   version: string;
   revision: string;
   branch: string;

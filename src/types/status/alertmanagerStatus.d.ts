@@ -1,10 +1,6 @@
-import { AlertmanagerConfig } from './alertmanagerConfig';
-import { ClusterStatus } from './clusterStatus';
-import { VersionInfo } from './versionInfo';
-
-export interface AlertmanagerStatus {
-  cluster: ClusterStatus;
-  versionInfo: VersionInfo;
-  config: AlertmanagerConfig;
-  uptime: Date;
+interface APIAlertmanagerStatus {
+  cluster: APIClusterStatus;
+  versionInfo: APIVersionInfo;
+  config: APIAlertmanagerConfig;
+  uptime: string;
 }

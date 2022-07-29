@@ -1,4 +1,4 @@
-export interface PeerStatus {
+interface APIPeerStatus {
   name: string;
   address: string;
 }

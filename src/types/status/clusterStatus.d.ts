@@ -1,8 +1,5 @@
-import { PeerStatus } from './peerStatus';
-import { StatusString } from './statusString';
-
-export interface ClusterStatus {
+interface APIClusterStatus {
   name?: string;
   status: StatusString;
-  peers?: Array<PeerStatus>;
+  peers?: Array<APIPeerStatus>;
 }

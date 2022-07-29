@@ -1,14 +1,9 @@
-import { Alert } from './alert';
-import { AlertStatus } from './alertStatus';
-import { LabelSet } from './labelSet';
-import { Receiver } from './receiver';
-
-export interface GettableAlert extends Alert {
-  annotations: LabelSet;
-  receivers: Array<Receiver>;
+interface APIGettableAlert extends APIAlert {
+  annotations: APILabelSet;
+  receivers: Array<APIReceiver>;
   fingerprint: string;
-  startsAt: Date;
-  updatedAt: Date;
-  endsAt: Date;
-  status: AlertStatus;
+  startsAt: string;
+  updatedAt: string;
+  endsAt: string;
+  status: APIAlertStatus;
 }

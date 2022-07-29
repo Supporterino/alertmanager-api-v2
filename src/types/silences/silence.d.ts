@@ -1,9 +1,7 @@
-import { Matcher } from './matcher';
-
-export interface Silence {
-  matchers: Array<Matcher>;
-  startsAt: Date;
-  endsAt: Date;
+interface APISilence {
+  matchers: Array<APIMatcher>;
+  startsAt: string;
+  endsAt: string;
   createdBy: string;
   comment: string;
 }

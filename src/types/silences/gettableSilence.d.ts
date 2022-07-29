@@ -1,8 +1,5 @@
-import { Silence } from './silence';
-import { SilenceStatus } from './silenceStatus';
-
-export interface GettableSilence extends Silence {
+interface APIGettableSilence extends APISilence {
   id: string;
-  status: SilenceStatus;
-  updatedAt: Date;
+  status: APISilenceStatus;
+  updatedAt: string;
 }

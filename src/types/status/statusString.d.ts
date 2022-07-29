@@ -1,1 +1,1 @@
-export type StatusString = 'ready' | 'settling' | 'disabled';
+type StatusString = 'ready' | 'settling' | 'disabled';

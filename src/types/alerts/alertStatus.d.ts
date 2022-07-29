@@ -1,7 +1,7 @@
-export interface AlertStatus {
-  state: AlertStateString;
+interface APIAlertStatus {
+  state: APIAlertStateString;
   silencedBy: Array<string>;
   inhibitedBy: Array<string>;
 }
 
-export type AlertStateString = 'unprocessed' | 'active' | 'supressed';
+type AlertStateString = 'unprocessed' | 'active' | 'supressed';

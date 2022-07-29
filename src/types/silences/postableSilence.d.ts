@@ -1,5 +1,3 @@
-import { Silence } from './silence';
-
-export interface PostableSilence extends Silence {
+interface APIPostableSilence extends APISilence {
   id?: string;
 }

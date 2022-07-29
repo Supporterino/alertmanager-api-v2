@@ -1,3 +1,3 @@
-export interface AlertmanagerConfig {
+interface APIAlertmanagerConfig {
   original: string;
 }

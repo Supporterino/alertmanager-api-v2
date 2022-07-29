@@ -1,3 +1,3 @@
-export interface LabelSet {
+interface APILabelSet {
   [x: string]: string;
 }
