@@ -1,4 +1,4 @@
-class Matcher {
+export class Matcher {
   private _name: string;
   public get name(): string {
     return this._name;

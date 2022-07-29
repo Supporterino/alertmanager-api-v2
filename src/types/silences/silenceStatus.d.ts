@@ -4,6 +4,6 @@ interface APISilenceStatus {
 
 type SilenceStateString = 'expired' | 'active' | 'pending';
 
-export interface SilenceStatus {
+interface SilenceStatus {
   state: SilenceStateString;
 }
