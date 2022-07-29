@@ -4,4 +4,4 @@ interface APIAlertStatus {
   inhibitedBy: Array<string>;
 }
 
-type AlertStateString = 'unprocessed' | 'active' | 'supressed';
+type APIAlertStateString = 'unprocessed' | 'active' | 'supressed';

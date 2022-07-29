@@ -1,4 +1,6 @@
 import { Matcher } from '..';
+import { APIGettableSilence } from '../types/silences/gettableSilence';
+import { SilenceStatus } from './silenceStatus';
 
 export class Silence {
   private _id: string;

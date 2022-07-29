@@ -1,4 +1,5 @@
-interface APISilence {
+import { APIMatcher } from './matcher';
+export interface APISilence {
   matchers: Array<APIMatcher>;
   startsAt: string;
   endsAt: string;

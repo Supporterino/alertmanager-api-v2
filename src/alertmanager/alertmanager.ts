@@ -1,9 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
 import { Silence, silencesFromAPIArray } from '../silences/silence';
-import {
-  BasicAuth,
-  AlertmanagerOptions,
-} from '../types/alertmanager/alertmanagerOptions';
+import { APIGettableSilence } from '../types/silences/gettableSilence';
+import { isURL } from '../utils/urlValidator';
+import { BasicAuth, AlertmanagerOptions } from './alertmanagerOptions';
 
 export class Alertmanager {
   private _url: string;
