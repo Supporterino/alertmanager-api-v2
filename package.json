@@ -1,6 +1,6 @@
 {
   "name": "alertmanager-api-v2",
-  "version": "0.0.0-development",
+  "version": "0.0.1",
   "description": "A npm packge which wraps the alertmanager v2 API in classes and interfaces. It also provides some utility functions",
   "main": "./lib/src/index.js",
   "files": [
