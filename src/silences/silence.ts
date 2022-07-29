@@ -1,4 +1,4 @@
-import { SilenceStatus } from '../types/silences/silenceStatus';
+import { Matcher } from '..';
 
 export class Silence {
   private _id: string;
