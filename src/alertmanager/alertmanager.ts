@@ -28,6 +28,13 @@ export class Alertmanager {
     return silencesFromAPIArray(rawSilences);
   }
 
+  public async getActiveSilences(): Promise<Silence[]> {
+    const silences = this.getSilences();
+    return (await silences).filter(
+      silence => silence.status.state === 'active'
+    );
+  }
+
   private createHTTPClientInstance(): AxiosInstance {
     return axios.create({
       baseURL: this._url,
