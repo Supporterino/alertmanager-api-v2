@@ -28,12 +28,7 @@ export class Matcher {
     this._isEqual = value;
   }
 
-  constructor(
-    name: string,
-    value: string,
-    isRegex: boolean,
-    isEqual?: boolean
-  ) {
+  constructor(name: string, value: string, isRegex: boolean, isEqual?: boolean) {
     this._name = name;
     this._value = value;
     this._isRegex = isRegex;

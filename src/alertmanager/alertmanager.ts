@@ -11,8 +11,7 @@ export class Alertmanager {
   private _httpClient: AxiosInstance | undefined;
 
   constructor(url: string, options?: AlertmanagerOptions) {
-    if (!isURL(url))
-      throw new Error(`The given url (${url}) isn't a valid URL.`);
+    if (!isURL(url)) throw new Error(`The given url (${url}) isn't a valid URL.`);
     this._url = url;
     if (options && options.auth) {
       this._basicAuth = options.auth;
@@ -28,9 +27,7 @@ export class Alertmanager {
 
   public async getActiveSilences(): Promise<Silence[]> {
     const silences = this.getSilences();
-    return (await silences).filter(
-      silence => silence.status.state === 'active'
-    );
+    return (await silences).filter(silence => silence.status.state === 'active');
   }
 
   private createHTTPClientInstance(): AxiosInstance {
@@ -39,9 +36,7 @@ export class Alertmanager {
       timeout: 1000,
       ...(this._basicAuth && {
         headers: {
-          Authorization: `Basic ${Buffer.from(
-            this._basicAuth.username + ':' + this._basicAuth.password
-          ).toString('base64')}`,
+          Authorization: `Basic ${Buffer.from(this._basicAuth.username + ':' + this._basicAuth.password).toString('base64')}`,
         },
       }),
     });

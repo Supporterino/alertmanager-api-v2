@@ -90,21 +90,9 @@ export class Silence {
   }
 
   public static fromJSON(apiObject: APIGettableSilence): Silence {
-    if (!isAPIGettableSilence(apiObject))
-      throw new Error(
-        "The received apiObject isn't conform to the definition files."
-      );
+    if (!isAPIGettableSilence(apiObject)) throw new Error("The received apiObject isn't conform to the definition files.");
     const matchers = new Array<Matcher>();
-    apiObject.matchers.forEach(matcher =>
-      matchers.push(
-        new Matcher(
-          matcher.name,
-          matcher.value,
-          matcher.isRegex,
-          matcher.isEqual
-        )
-      )
-    );
+    apiObject.matchers.forEach(matcher => matchers.push(new Matcher(matcher.name, matcher.value, matcher.isRegex, matcher.isEqual)));
     return new Silence(
       apiObject.id,
       apiObject.status,
@@ -118,9 +106,7 @@ export class Silence {
   }
 }
 
-export const silencesFromAPIArray = (
-  arr: Array<APIGettableSilence>
-): Array<Silence> => {
+export const silencesFromAPIArray = (arr: Array<APIGettableSilence>): Array<Silence> => {
   const silences = new Array<Silence>();
   arr.forEach(rawSilence => silences.push(Silence.fromJSON(rawSilence)));
   return silences;
