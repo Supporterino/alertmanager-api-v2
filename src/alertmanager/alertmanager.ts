@@ -2,9 +2,11 @@ import axios, { AxiosInstance } from 'axios';
 import { Silence, silencesFromAPIArray } from '../silences/silence';
 import { Receiver } from '../types/alerts/receiver';
 import { APIGettableSilence } from '../types/silences/gettableSilence';
+import { APIMatcher } from '../types/silences/matcher';
+import { APIPostableSilence } from '../types/silences/postableSilence';
 import { APIAlertmanagerStatus } from '../types/status/alertmanagerStatus';
 import { isURL } from '../utils/urlValidator';
-import { BasicAuth, AlertmanagerOptions } from './alertmanagerOptions';
+import { BasicAuth, AlertmanagerOptions, CreateSilence, CreateSilenceResponse, UpdateSilence } from './alertmanagerOptions';
 import { AlertmanagerStatus } from './alertmanagerStatus';
 
 export class Alertmanager {
@@ -50,6 +52,17 @@ export class Alertmanager {
     return (await silences).filter(silence => silence.status.state === 'active');
   }
 
+  public async createSilence(silence: CreateSilence): Promise<CreateSilenceResponse> {
+    const requestData = this.createPostableSilenceData(silence);
+    return await this.sendPostableSilence(requestData);
+  }
+
+  public async updateSilence(silence: UpdateSilence): Promise<CreateSilenceResponse> {
+    const requestData = this.createPostableSilenceData(silence);
+    requestData.id = silence.id;
+    return await this.sendPostableSilence(requestData);
+  }
+
   private createHTTPClientInstance(): AxiosInstance {
     return axios.create({
       baseURL: this._url,
@@ -60,6 +73,27 @@ export class Alertmanager {
         },
       }),
     });
+  }
+
+  private async sendPostableSilence(requestData: APIPostableSilence): Promise<CreateSilenceResponse> {
+    if (!this._httpClient) this._httpClient = this.createHTTPClientInstance();
+    const res = await this._httpClient.post(this._paths.get('silences')!, requestData);
+    if (res.status === 400) throw new Error(`Bad request sent to /silence endpoint. Response: ${<string>res.data}`);
+    if (res.status === 404) throw new Error(`No silence with this ID present. Response: ${<string>res.data}`);
+    return res.data as CreateSilenceResponse;
+  }
+
+  private createPostableSilenceData(silence: CreateSilence | UpdateSilence): APIPostableSilence {
+    const APImatchers: Array<APIMatcher> = [];
+    silence.matchers.forEach(matcher => APImatchers.push(matcher.convertToAPIObject()));
+    const requestData: APIPostableSilence = {
+      matchers: APImatchers,
+      startsAt: silence.startsAt.toJSON(),
+      endsAt: silence.endsAt.toJSON(),
+      createdBy: silence.createdBy,
+      comment: silence.comment,
+    };
+    return requestData;
   }
 }
 

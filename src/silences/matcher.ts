@@ -1,3 +1,5 @@
+import { APIMatcher } from '../types/silences/matcher';
+
 export class Matcher {
   private _name: string;
   public get name(): string {
@@ -34,5 +36,14 @@ export class Matcher {
     this._isRegex = isRegex;
     if (isEqual !== undefined) this._isEqual = isEqual;
     else this._isEqual = true;
+  }
+
+  convertToAPIObject(): APIMatcher {
+    return {
+      name: this._name,
+      value: this._value,
+      isRegex: this._isRegex,
+      isEqual: this._isEqual,
+    };
   }
 }
