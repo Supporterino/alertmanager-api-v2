@@ -37,7 +37,7 @@ export class Matcher {
     this._name = name;
     this._value = value;
     this._isRegex = isRegex;
-    if (isEqual) this._isEqual = isEqual;
+    if (isEqual !== undefined) this._isEqual = isEqual;
     else this._isEqual = true;
   }
 }

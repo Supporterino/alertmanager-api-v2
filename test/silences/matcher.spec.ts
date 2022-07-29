@@ -9,4 +9,23 @@ describe('Matcher class', () => {
     expect(matcher.isEqual).toBe(true);
     expect(matcher.isRegex).toBe(true);
   });
+
+  it('should return the right values after the use of setters', () => {
+    const matcher = new Matcher('a', 'b', false, false);
+
+    expect(matcher.name).toMatch('a');
+    expect(matcher.value).toMatch('b');
+    expect(matcher.isEqual).toBe(false);
+    expect(matcher.isRegex).toBe(false);
+
+    matcher.isEqual = true;
+    matcher.isRegex = true;
+    matcher.name = 'c';
+    matcher.value = 'd';
+
+    expect(matcher.name).toMatch('c');
+    expect(matcher.value).toMatch('d');
+    expect(matcher.isEqual).toBe(true);
+    expect(matcher.isRegex).toBe(true);
+  });
 });

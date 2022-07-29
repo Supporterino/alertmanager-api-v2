@@ -1,5 +1,6 @@
 import { Matcher } from '..';
 import { APIGettableSilence } from '../types/silences/gettableSilence';
+import { isAPIGettableSilence } from '../utils/apiValidator';
 import { SilenceStatus } from './silenceStatus';
 
 export class Silence {
@@ -89,6 +90,10 @@ export class Silence {
   }
 
   public static fromJSON(apiObject: APIGettableSilence): Silence {
+    if (!isAPIGettableSilence(apiObject))
+      throw new Error(
+        "The received apiObject isn't conform to the definition files."
+      );
     const matchers = new Array<Matcher>();
     apiObject.matchers.forEach(matcher =>
       matchers.push(
