@@ -5,6 +5,7 @@ import { APIGettableSilence } from '../types/silences/gettableSilence';
 import { APIMatcher } from '../types/silences/matcher';
 import { APIPostableSilence } from '../types/silences/postableSilence';
 import { APIAlertmanagerStatus } from '../types/status/alertmanagerStatus';
+import { isValidGUID } from '../utils/stringValidator';
 import { isURL } from '../utils/urlValidator';
 import { BasicAuth, AlertmanagerOptions, CreateSilence, CreateSilenceResponse, UpdateSilence } from './alertmanagerOptions';
 import { AlertmanagerStatus } from './alertmanagerStatus';
@@ -61,6 +62,22 @@ export class Alertmanager {
     const requestData = this.createPostableSilenceData(silence);
     requestData.id = silence.id;
     return await this.sendPostableSilence(requestData);
+  }
+
+  public async getSilence(silenceID: string): Promise<Silence> {
+    if (!isValidGUID(silenceID)) throw new Error(`The provided silenceID isn't a valid GUID. Provided ID: ${silenceID}`);
+    if (!this._httpClient) this._httpClient = this.createHTTPClientInstance();
+    const response = await this._httpClient.get(`${this._paths.get('silences')!}/${silenceID}`);
+    if (response.status === 404) throw new Error('No silence with this ID present.');
+    return Silence.fromJSON(response.data);
+  }
+
+  public async deleteSilence(silenceID: string): Promise<boolean> {
+    if (!isValidGUID(silenceID)) throw new Error(`The provided silenceID isn't a valid GUID. Provided ID: ${silenceID}`);
+    if (!this._httpClient) this._httpClient = this.createHTTPClientInstance();
+    const response = await this._httpClient.delete(`${this._paths.get('silences')!}/${silenceID}`);
+    if (response.status === 200) return true;
+    else return false;
   }
 
   private createHTTPClientInstance(): AxiosInstance {
