@@ -19,13 +19,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Supporterino/alertmanager-api-v2.git"
+    "url": "git+https://github.com/supporterino/alertmanager-api-v2.git"
   },
   "license": "MIT",
   "author": {
     "name": "Lars Roth",
-    "email": "Supporterino@users.noreply.github.com",
-    "url": "https://github.com/Supporterino"
+    "email": "supporterino@users.noreply.github.com",
+    "url": "https://github.com/supporterino"
   },
   "engines": {
     "node": ">=12.0"
@@ -42,17 +42,16 @@
     "codecov"
   ],
   "bugs": {
-    "url": "https://github.com/Supporterino/alertmanager-api-v2/issues"
+    "url": "https://github.com/supporterino/alertmanager-api-v2/issues"
   },
-  "homepage": "https://github.com/Supporterino/alertmanager-api-v2#readme",
+  "homepage": "https://github.com/supporterino/alertmanager-api-v2#readme",
   "devDependencies": {
-    "@Supporterino/commitizen": "^4.2.8",
-    "@Supporterino/cz-conventional-changelog": "^3.3.4",
     "@types/jest": "^27.5.2",
     "@types/node": "^12.20.11",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.25.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-node": "^11.1.0",
@@ -68,7 +67,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/@Supporterino/cz-conventional-changelog"
+      "path": "./node_modules/cz-conventional-changelog"
     }
   },
   "lint-staged": {
