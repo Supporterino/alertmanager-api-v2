@@ -1,3 +1,4 @@
+import { isAPIMatcher } from '../../src/utils/apiValidator';
 import { Matcher } from './../../src/index';
 
 describe('Matcher class', () => {
@@ -27,5 +28,11 @@ describe('Matcher class', () => {
     expect(matcher.value).toMatch('d');
     expect(matcher.isEqual).toBe(true);
     expect(matcher.isRegex).toBe(true);
+  });
+
+  it('should construct a valid API object', () => {
+    const matcher = new Matcher('test', 'a value', true);
+
+    expect(isAPIMatcher(matcher.convertToAPIObject())).toBe(true);
   });
 });
