@@ -1,3 +1,6 @@
+import { Silence, silencesFromAPIArray } from '../../src/silences/silence';
+import { APIGettableSilence } from '../../src/types/silences/gettableSilence';
+
 export const statusResponse = {
   uptime: '2022-06-23T07:15:15.759Z',
   config: {
@@ -73,3 +76,109 @@ export const statusResult = {
     version: '0.24.0',
   },
 };
+
+export const receiversResponse = [
+  {
+    name: 'default',
+  },
+  {
+    name: 'page',
+  },
+  {
+    name: 'notify',
+  },
+];
+
+export const silencesResponse: Array<APIGettableSilence> = [
+  {
+    id: '8a7505f7-f432-42f1-9fea-ccaf7e1391ec',
+    status: {
+      state: 'active',
+    },
+    updatedAt: '2022-07-26T08:39:29.889Z',
+    matchers: [
+      {
+        name: 'service_group',
+        value: 'cassandra-cloud',
+        isRegex: false,
+        isEqual: true,
+      },
+    ],
+    startsAt: '2022-07-26T08:39:29.889Z',
+    endsAt: '2022-08-02T08:39:11.070Z',
+    createdBy: 'abc',
+    comment: 'shut up snaps servers',
+  },
+  {
+    id: '1e7fc591-312e-4b6f-bc92-c07760e3e3da',
+    status: {
+      state: 'expired',
+    },
+    updatedAt: '2022-08-01T07:59:40.169Z',
+    matchers: [
+      {
+        name: 'component_x',
+        value: 'yes',
+        isRegex: false,
+        isEqual: true,
+      },
+      {
+        name: 'environment_test',
+        value: 'yes',
+        isRegex: false,
+        isEqual: true,
+      },
+    ],
+    startsAt: '2022-08-01T07:59:40.169Z',
+    endsAt: '2022-08-01T08:04:39.966Z',
+    createdBy: 'PrometheusAlertSilenceService',
+    comment: 'Programmatically generated silence because of update',
+  },
+  {
+    id: '778a3ae3-f815-4cab-ae72-01bb3f255f93',
+    status: {
+      state: 'expired',
+    },
+    updatedAt: '2022-08-01T07:03:43.617Z',
+    matchers: [
+      {
+        name: 'component_x',
+        value: 'yes',
+        isRegex: false,
+        isEqual: true,
+      },
+      {
+        name: 'environment_test',
+        value: 'yes',
+        isRegex: false,
+        isEqual: true,
+      },
+    ],
+    startsAt: '2022-08-01T07:03:43.617Z',
+    endsAt: '2022-08-01T07:33:43.389Z',
+    createdBy: 'PrometheusAlertSilenceService',
+    comment: 'Programmatically generated silence because of update',
+  },
+];
+
+export const silencesResult = silencesFromAPIArray(silencesResponse);
+
+export const activeSilence = Silence.fromJSON({
+  id: '8a7505f7-f432-42f1-9fea-ccaf7e1391ec',
+  status: {
+    state: 'active',
+  },
+  updatedAt: '2022-07-26T08:39:29.889Z',
+  matchers: [
+    {
+      name: 'service_group',
+      value: 'cassandra-cloud',
+      isRegex: false,
+      isEqual: true,
+    },
+  ],
+  startsAt: '2022-07-26T08:39:29.889Z',
+  endsAt: '2022-08-02T08:39:11.070Z',
+  createdBy: 'abc',
+  comment: 'shut up snaps servers',
+});

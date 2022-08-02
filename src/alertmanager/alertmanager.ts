@@ -67,7 +67,7 @@ export class Alertmanager {
   public async getSilence(silenceID: string): Promise<Silence> {
     if (!isValidGUID(silenceID)) throw new Error(`The provided silenceID isn't a valid GUID. Provided ID: ${silenceID}`);
     if (!this._httpClient) this._httpClient = this.createHTTPClientInstance();
-    const response = await this._httpClient.get(`${this._paths.get('silences')!}/${silenceID}`);
+    const response = await this._httpClient.get(`${this._paths.get('silence')!}/${silenceID}`);
     if (response.status === 404) throw new Error('No silence with this ID present.');
     return Silence.fromJSON(response.data);
   }
@@ -75,7 +75,7 @@ export class Alertmanager {
   public async deleteSilence(silenceID: string): Promise<boolean> {
     if (!isValidGUID(silenceID)) throw new Error(`The provided silenceID isn't a valid GUID. Provided ID: ${silenceID}`);
     if (!this._httpClient) this._httpClient = this.createHTTPClientInstance();
-    const response = await this._httpClient.delete(`${this._paths.get('silences')!}/${silenceID}`);
+    const response = await this._httpClient.delete(`${this._paths.get('silence')!}/${silenceID}`);
     if (response.status === 200) return true;
     else return false;
   }
@@ -117,6 +117,7 @@ export class Alertmanager {
 const getPathsMap = (): Map<string, string> => {
   const map = new Map<string, string>();
   map.set('silences', '/api/v2/silences');
+  map.set('silence', '/api/v2/silence');
   map.set('status', '/api/v2/status');
   map.set('receivers', '/api/v2/receivers');
   return map;
