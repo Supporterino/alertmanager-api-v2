@@ -68,6 +68,7 @@ describe('Silence class', () => {
       comment: 'testing',
     };
 
+    // @ts-ignore
     expect(() => Silence.fromJSON(apiObject)).toThrow();
   });
 
